@@ -12,7 +12,7 @@
         android:minHeight="?attr/actionBarSize"
         app:titleTextAppearance="@style/ToolbarTextAppearance.Title"
         app:subtitleTextAppearance="@style/ToolbarTextAppearance.Subtitle"
-        style="@style/MyToolbar" >
+        style="@style/toolbarStyle" >
 
         <TextView
             android:id="@+id/toolbarTextView"

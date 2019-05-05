@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Webstack Flights</string>
+    <string name="subtitles">16sp</string>
+    <string name="cta">Onde você quer ir agora?</string>
 </resources>

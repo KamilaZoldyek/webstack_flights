@@ -5,25 +5,17 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/royalBlue</item>
         <item name="colorAccent">@color/coral</item>
-        <item name="toolbarStyle">@style/MyToolbar</item>
-        <item name="actionBarStyle">@style/MyToolbar</item>
+        <item name="toolbarStyle">@style/toolbarStyle</item>
+        <item name="actionBarStyle">@style/toolbarStyle</item>
     </style>
-
-
 
     <style name="WebstackNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/royalBlue</item>
         <item name="colorAccent">@color/coral</item>
-        <item name="toolbarStyle">@style/MyToolbar</item>
+        <item name="toolbarStyle">@style/toolbarStyle</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
     </style>
-
-
-
-
-
-
 
     <style name="ToolbarTextAppearance">
         <item name="android:fontFamily">sans-serif-light</item>
@@ -31,19 +23,16 @@
         <item name="android:textColor">@color/lightGray</item>
 
     </style>
-
     <style name="ToolbarTextAppearance.Title">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/titleTextSize</item>
         <item name="android:textAllCaps">true</item>
 
     </style>
-
     <style name="ToolbarTextAppearance.Subtitle">
-        <item name="android:textSize">8sp</item>
+        <item name="android:textSize">@dimen/subtitleTextSize</item>
 
     </style>
-
-    <style name="MyToolbar">
+    <style name="toolbarStyle">
         <item name="theme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="android:background">@color/white</item>
         <item name="android:layout_gravity">center</item>
@@ -51,8 +40,24 @@
 
     </style>
 
+    <style name="callToActionText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/ctaTextSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">monospace</item>
+    </style>
 
-
+    <style name="buttonText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/buttonTextSize</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="button" parent="Widget.AppCompat.Button">
+        <item name="android:textAppearance">@style/buttonText</item>
+        <item name="android:padding">@dimen/doublePadding</item>
+        <item name="android:background">@drawable/round_button</item>
+    </style>
 
 
 

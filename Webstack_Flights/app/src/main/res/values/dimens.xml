@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ctaTextSize">40sp</dimen>
+    <dimen name="titleTextSize">20sp</dimen>
+    <dimen name="subtitleTextSize">16sp</dimen>
+    <dimen name="bodyTextSize">16sp</dimen>
+    <dimen name="captionTextSize">13sp</dimen>
+    <dimen name="buttonTextSize">14sp</dimen>
+    <dimen name="padding">8dp</dimen>
+    <dimen name="doublePadding">16dp</dimen>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="doubleMargin">16dp</dimen>
+</resources>

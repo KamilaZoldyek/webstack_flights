@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.kamilazoldyek.webstack_flights.R;
@@ -26,38 +27,44 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
 
-    public TextView tv, toolbarTV;
-    public ApiClient apiClient;
-    public Retrofit retrofit;
-    List<Location> loc;
-    DefaultApi api;
-    List<FlightList> flightLists;
-    List<RequestedFlightSegmentList> segmentLists;
-    Toolbar toolbar;
+    private ApiClient apiClient;
+    private DefaultApi api;
+    private Button button;
 
-
+    private List<Location> loc;
+    private List<FlightList> flightLists;
+    private List<RequestedFlightSegmentList> segmentLists;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv = findViewById(R.id.textview);
+
+//            Start API service
         apiClient = new ApiClient();
-        loc = new ArrayList<>();
         apiClient.createDefaultAdapter();
         api = apiClient.createService();
-        flightLists = new ArrayList<>();
-        segmentLists = new ArrayList<>();
+
+
+//        use when theres actionBar
+        /*
         toolbar = findViewById(R.id.toolbar);
         toolbarTV = findViewById(R.id.toolbarTextView);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbarTV.setText("aeroportos");
+        */
+
+
+//        test stuff
+       /* tv = findViewById(R.id.textview);
+        loc = new ArrayList<>();
+        flightLists = new ArrayList<>();
+        segmentLists = new ArrayList<>();
         getLocations();
-//        getSearch();
+        getSearch(); */
 
     }
 
