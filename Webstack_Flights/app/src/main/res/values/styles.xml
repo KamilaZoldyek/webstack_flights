@@ -59,6 +59,14 @@
         <item name="android:background">@drawable/round_button</item>
     </style>
 
+    <style name="captionText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">@dimen/doublePadding</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/captionTextSize</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
 
 
 </resources>
