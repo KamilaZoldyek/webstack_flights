@@ -1,11 +1,59 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="WebstackLightActionBar" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/royalBlue</item>
+        <item name="colorAccent">@color/coral</item>
+        <item name="toolbarStyle">@style/MyToolbar</item>
+        <item name="actionBarStyle">@style/MyToolbar</item>
     </style>
+
+
+
+    <style name="WebstackNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/royalBlue</item>
+        <item name="colorAccent">@color/coral</item>
+        <item name="toolbarStyle">@style/MyToolbar</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
+    </style>
+
+
+
+
+
+
+
+    <style name="ToolbarTextAppearance">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/lightGray</item>
+
+    </style>
+
+    <style name="ToolbarTextAppearance.Title">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAllCaps">true</item>
+
+    </style>
+
+    <style name="ToolbarTextAppearance.Subtitle">
+        <item name="android:textSize">8sp</item>
+
+    </style>
+
+    <style name="MyToolbar">
+        <item name="theme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+
+
+
+
 
 </resources>

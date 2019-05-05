@@ -1,9 +1,12 @@
-package com.example.kamilazoldyek.webstack_flights;
+package com.example.kamilazoldyek.webstack_flights.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.example.kamilazoldyek.webstack_flights.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +26,14 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
 
-    public TextView tv;
+    public TextView tv, toolbarTV;
     public ApiClient apiClient;
     public Retrofit retrofit;
     List<Location> loc;
     DefaultApi api;
     List<FlightList> flightLists;
     List<RequestedFlightSegmentList> segmentLists;
+    Toolbar toolbar;
 
 
 
@@ -45,10 +49,25 @@ public class MainActivity extends AppCompatActivity {
         api = apiClient.createService();
         flightLists = new ArrayList<>();
         segmentLists = new ArrayList<>();
-//        getLocations();
-        getSearch();
+        toolbar = findViewById(R.id.toolbar);
+        toolbarTV = findViewById(R.id.toolbarTextView);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbarTV.setText("aeroportos");
+        getLocations();
+//        getSearch();
 
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
+
 
 
     public void getTaxes(){
