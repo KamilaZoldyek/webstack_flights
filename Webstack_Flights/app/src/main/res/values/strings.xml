@@ -2,4 +2,7 @@
     <string name="app_name">Webstack Flights</string>
     <string name="subtitles">16sp</string>
     <string name="cta">Onde você quer ir agora?</string>
+    <string name="title_activity_search_tabbed">SearchTabbedActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

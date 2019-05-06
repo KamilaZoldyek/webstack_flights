@@ -5,24 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <include
+        layout="@layout/round_trip_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextAppearance="@style/ToolbarTextAppearance.Title"
-        app:subtitleTextAppearance="@style/ToolbarTextAppearance.Subtitle"
-        style="@style/toolbarStyle" >
-
-        <TextView
-            android:id="@+id/toolbarTextView"
-            style="@style/ToolbarTextAppearance.Title"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

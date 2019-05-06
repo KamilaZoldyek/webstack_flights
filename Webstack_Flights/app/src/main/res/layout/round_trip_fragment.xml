@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/bodyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin"
+                    android:text="Origem" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteOrigin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/royalBlue"
+                    android:completionThreshold="1"
+                    android:hint="Origem..."
+                    android:padding="@dimen/padding"
+                    android:textAppearance="@style/bodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/bodyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin"
+                    android:text="Destino" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteDestination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/royalBlue"
+                    android:completionThreshold="1"
+                    android:hint="Destino..."
+                    android:padding="@dimen/padding"
+                    android:textAppearance="@style/bodyText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:orientation="vertical"
+                android:padding="@dimen/padding">
+
+                <LinearLayout
+                    android:id="@+id/departureDateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="@dimen/imgWidth"
+                        android:layout_height="@dimen/imgHeight"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:tint="@color/royalBlue"
+                        app:srcCompat="@drawable/ic_calendar" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/bodyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:padding="@dimen/padding"
+                        android:text="Quando você vai?" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/departureDateTV"
+                    style="@style/bodyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="30 de Setembro, 2019"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:orientation="vertical"
+                android:padding="@dimen/padding">
+
+                <LinearLayout
+                    android:id="@+id/voltaDateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/imgWidth"
+                        android:layout_height="@dimen/imgHeight"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:tint="@color/royalBlue"
+                        app:srcCompat="@drawable/ic_calendar" />
+
+                    <TextView
+                        style="@style/bodyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:padding="@dimen/padding"
+                        android:text="Quando você volta?" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/voltaDateTV"
+                    style="@style/bodyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="30 de Setembro, 2019"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:orientation="vertical"
+                android:padding="@dimen/padding">
+
+                <LinearLayout
+                    android:id="@+id/passengersLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/imgWidth"
+                        android:layout_height="@dimen/imgHeight"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:tint="@color/royalBlue"
+                        app:srcCompat="@drawable/ic_people" />
+
+                    <TextView
+                        style="@style/bodyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:padding="@dimen/padding"
+                        android:text="Quantas pessoas?" />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/passangersSpinner"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_home"
+                style="@style/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:background="@drawable/round_button_filled"
+                android:gravity="center"
+                android:text="Melhores Voos" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

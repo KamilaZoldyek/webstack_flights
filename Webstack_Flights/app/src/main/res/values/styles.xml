@@ -23,15 +23,18 @@
         <item name="android:textColor">@color/lightGray</item>
 
     </style>
+
     <style name="ToolbarTextAppearance.Title">
         <item name="android:textSize">@dimen/titleTextSize</item>
         <item name="android:textAllCaps">true</item>
 
     </style>
+
     <style name="ToolbarTextAppearance.Subtitle">
         <item name="android:textSize">@dimen/subtitleTextSize</item>
 
     </style>
+
     <style name="toolbarStyle">
         <item name="theme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="android:background">@color/white</item>
@@ -53,6 +56,7 @@
         <item name="android:textSize">@dimen/buttonTextSize</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
+
     <style name="button" parent="Widget.AppCompat.Button">
         <item name="android:textAppearance">@style/buttonText</item>
         <item name="android:padding">@dimen/doublePadding</item>
@@ -67,6 +71,28 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <style name="bodyText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/darkGray</item>
+        <item name="android:textSize">@dimen/bodyTextSize</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>

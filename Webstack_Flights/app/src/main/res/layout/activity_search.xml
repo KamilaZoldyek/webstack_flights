@@ -11,4 +11,31 @@
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        app:elevation="0dp"
+        android:id="@+id/appbar">
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        android:id="@+id/tabLayout"
+        app:tabTextColor="@color/darkGray"
+        app:tabIndicatorColor="@color/royalBlue"
+        android:background="@color/white">
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/viewPager"
+            ></android.support.v4.view.ViewPager>
+    </android.support.design.widget.TabLayout>
+
+
 </LinearLayout>
