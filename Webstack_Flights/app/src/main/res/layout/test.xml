@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/round_trip_fragment"
+        layout="@layout/search_trip_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -6,24 +6,35 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/layout"
+            android:focusable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/originLayout"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/bodyText"
+                    android:id="@+id/origemTV"
+                    style="bodyText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin"
@@ -32,24 +43,26 @@
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteOrigin"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/editTextHeight"
                     android:layout_margin="@dimen/margin"
                     android:background="@drawable/round_button"
                     android:backgroundTint="@color/royalBlue"
                     android:completionThreshold="1"
                     android:hint="Origem..."
                     android:padding="@dimen/padding"
-                    android:textAppearance="@style/bodyText" />
+                    android:textSize="@dimen/bodyTextSize"/>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/destLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/bodyText"
+                    android:id="@+id/destinoTV"
+                    style="bodyText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin"
@@ -58,27 +71,82 @@
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteDestination"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/editTextHeight"
                     android:layout_margin="@dimen/margin"
                     android:background="@drawable/round_button"
                     android:backgroundTint="@color/royalBlue"
                     android:completionThreshold="1"
                     android:hint="Destino..."
                     android:padding="@dimen/padding"
-                    android:textAppearance="@style/bodyText" />
+                    android:textSize="@dimen/bodyTextSize"/>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/passagersLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
                 android:orientation="vertical"
                 android:padding="@dimen/padding">
 
+                <TextView
+                    style="bodyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:padding="@dimen/padding"
+                    android:text="Quantas pessoas?" />
+
+                <LinearLayout
+                    android:id="@+id/passengersLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/royalBlue"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/imgWidth"
+                        android:layout_height="@dimen/imgHeight"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:tint="@color/royalBlue"
+                        app:srcCompat="@drawable/ic_people" />
+
+                    <Spinner
+                        android:id="@+id/passangersSpinner"
+                        style="@style/spinnerStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/editTextHeight"
+                        android:layout_weight="11" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/departureLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:orientation="vertical"
+                android:padding="@dimen/padding">
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="bodyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:padding="@dimen/padding"
+                    android:text="Quando você vai?" />
+
                 <LinearLayout
                     android:id="@+id/departureDateLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/royalBlue"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -86,123 +154,102 @@
                         android:layout_width="@dimen/imgWidth"
                         android:layout_height="@dimen/imgHeight"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:tint="@color/royalBlue"
                         app:srcCompat="@drawable/ic_calendar" />
 
                     <TextView
-                        android:id="@+id/textView"
-                        style="@style/bodyText"
+                        android:id="@+id/departureDateTV"
+                        style="bodyText"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="10"
+                        android:layout_height="@dimen/editTextHeight"
+                        android:layout_gravity="center"
+                        android:layout_weight="7"
                         android:padding="@dimen/padding"
-                        android:text="Quando você vai?" />
+                        android:text="30 de Setembro, 2019"
+                        android:textSize="@dimen/titleTextSize" />
 
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/departureDateTV"
-                    style="@style/bodyText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="30 de Setembro, 2019"
-                    android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/returnQuestionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
                 android:orientation="vertical"
                 android:padding="@dimen/padding">
+
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    style="bodyText"
+                    android:onClick="onCheckboxClicked"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Viagem de volta também!" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/returnLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:orientation="vertical"
+                android:padding="@dimen/padding">
+
+                <TextView
+                    style="bodyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:padding="@dimen/padding"
+                    android:text="Quando você volta?" />
 
                 <LinearLayout
                     android:id="@+id/voltaDateLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/royalBlue"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/imgWidth"
                         android:layout_height="@dimen/imgHeight"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:tint="@color/royalBlue"
                         app:srcCompat="@drawable/ic_calendar" />
 
                     <TextView
-                        style="@style/bodyText"
+                        android:id="@+id/voltaDateTV"
+                        style="bodyText"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="10"
-                        android:padding="@dimen/padding"
-                        android:text="Quando você volta?" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/voltaDateTV"
-                    style="@style/bodyText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="30 de Setembro, 2019"
-                    android:textSize="24sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin"
-                android:orientation="vertical"
-                android:padding="@dimen/padding">
-
-                <LinearLayout
-                    android:id="@+id/passengersLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/imgWidth"
-                        android:layout_height="@dimen/imgHeight"
+                        android:layout_height="@dimen/editTextHeight"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:tint="@color/royalBlue"
-                        app:srcCompat="@drawable/ic_people" />
-
-                    <TextView
-                        style="@style/bodyText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="10"
+                        android:layout_weight="7"
                         android:padding="@dimen/padding"
-                        android:text="Quantas pessoas?" />
+                        android:text="30 de Setembro, 2019"
+                        android:textSize="@dimen/titleTextSize" />
 
                 </LinearLayout>
-
-                <Spinner
-                    android:id="@+id/passangersSpinner"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/button_home"
+                android:id="@+id/button_search"
                 style="@style/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin"
+                android:layout_margin="@dimen/doubleMargin"
                 android:background="@drawable/round_button_filled"
                 android:gravity="center"
                 android:text="Melhores Voos" />
+
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

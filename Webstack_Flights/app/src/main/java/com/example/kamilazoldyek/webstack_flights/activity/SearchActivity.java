@@ -4,9 +4,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kamilazoldyek.webstack_flights.R;
+import com.example.kamilazoldyek.webstack_flights.adapter.AutoCompleteLocationAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +25,6 @@ import java.util.List;
 import io.swagger.client.ApiClient;
 import io.swagger.client.api.DefaultApi;
 import io.swagger.client.model.Location;
-import io.swagger.client.model.search.FareList;
 import io.swagger.client.model.search.FlightList;
 import io.swagger.client.model.search.RequestedFlightSegmentList;
 import io.swagger.client.model.search.SearchTrip;
@@ -30,12 +40,16 @@ public class SearchActivity extends AppCompatActivity {
     private List<FlightList> flightLists;
     private List<RequestedFlightSegmentList> segmentLists;
     private Toolbar toolbar;
-    private TextView toolbarTV;
+    private TextView toolbarTV, originTV, destinationTV;
+    public AutoCompleteTextView originAutoComplete, destinationAutoComplete;
+    private LinearLayout returnLayout, layout;
+    private CheckBox checkBox;
+    private Spinner passengersSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.search_trip_activity);
 
         //        use when theres toolBar
         toolbar = findViewById(R.id.toolbar);
@@ -43,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbarTV.setText("Pesquisa de voos");
+        toolbarTV.setText("Pesquisa");
 
         locationList = new ArrayList<>();
         flightLists = new ArrayList<>();
@@ -54,6 +68,30 @@ public class SearchActivity extends AppCompatActivity {
         apiClient.createDefaultAdapter();
         api = apiClient.createService();
 
+        //        views
+        returnLayout = findViewById(R.id.returnLayout);
+        checkBox = findViewById(R.id.checkBox);
+        passengersSpinner = findViewById(R.id.passangersSpinner);
+        layout = findViewById(R.id.originLayout);
+        originAutoComplete = findViewById(R.id.autoCompleteOrigin);
+        destinationAutoComplete = findViewById(R.id.autoCompleteDestination);
+
+        layout.requestFocus();
+
+        //        checkbox
+        checkBox.setChecked(false);
+        returnLayout.setVisibility(View.GONE);
+        onCheckboxClicked(checkBox);
+
+        //        Spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter
+                .createFromResource(this, R.array.passengersSpinner, R.layout.spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        passengersSpinner.setAdapter(adapter);
+
+
+        //        Search locations
+        getLocations();
     }
 
     public void getSearch() {
@@ -101,7 +139,6 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-
     public void getLocations() {
 
         Call<List<Location>> call = api.locationsGet();
@@ -114,23 +151,31 @@ public class SearchActivity extends AppCompatActivity {
                 }
                 Log.i("TestKamis", "Code: " + response.code());
                 locationList = response.body();
-               /* for (Location location : loc) {
-                    String content = "";
-                    content += "Nome: " + location.getCity() + "\n";
-                    content += "Code: " + location.getCode() + "\n\n";
-
-                    tv.append(content);
-                }*/
-
+                if(!locationList.isEmpty()){
+                    AutoCompleteLocationAdapter adapterLoc = new AutoCompleteLocationAdapter(SearchActivity.this, locationList);
+                    originAutoComplete.setAdapter(adapterLoc);
+                    destinationAutoComplete.setAdapter(adapterLoc);
+                }
             }
-
             @Override
             public void onFailure(Call<List<Location>> call, Throwable t) {
                 Log.i("Test", "Code: " + t.getMessage());
-
             }
         });
     }
+
+    public void onCheckboxClicked(View cb) {
+        boolean checked = ((CheckBox) cb).isChecked();
+        if (checked) {
+            returnLayout.setAnimation(AnimationUtils.loadAnimation(SearchActivity.this, R.anim.dropdown_anim));
+            returnLayout.setVisibility(View.VISIBLE);
+        } else {
+            returnLayout.setAnimation(AnimationUtils.loadAnimation(SearchActivity.this, R.anim.upward_anim));
+            returnLayout.setVisibility(View.GONE);
+        }
+    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -142,5 +187,11 @@ public class SearchActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // TODO: 06/05/19 reseta tudo aqui
     }
 }
