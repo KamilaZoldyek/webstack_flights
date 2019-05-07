@@ -101,6 +101,11 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <style name="bodyText.big.title" parent="bodyText.big">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->

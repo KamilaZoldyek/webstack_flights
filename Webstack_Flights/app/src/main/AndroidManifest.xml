@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/WebstackNoActionBar">
-
+        <activity android:name=".activity.FlightListActivity"></activity>
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>

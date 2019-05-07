@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="ctaTextSize">40sp</dimen>
+    <dimen name="textSizeHuge">24sp</dimen>
     <dimen name="titleTextSize">20sp</dimen>
     <dimen name="subtitleTextSize">16sp</dimen>
     <dimen name="bodyTextSize">16sp</dimen>

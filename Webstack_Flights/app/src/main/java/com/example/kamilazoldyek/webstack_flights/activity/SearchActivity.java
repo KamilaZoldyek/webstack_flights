@@ -1,5 +1,6 @@
 package com.example.kamilazoldyek.webstack_flights.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -130,65 +131,10 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
             @Override
             public void onClick(View view) {
                 localData.setPassengers(passengersSpinner.getSelectedItem().toString());
-//                getSearch();
+                Intent intent = new Intent(SearchActivity.this, FlightListActivity.class);
+                startActivity(intent);
             }
         });
-
-    }
-
-    public void getSearch() {
-
-        Call<SearchTrip> call = api.searchGet(localData.getOrigin(),
-                localData.getDestination(),
-                localData.getDepartureDate(),
-                Integer.valueOf(localData.getPassengers()),
-                localData.getReturnDate());
-
-
-        call.enqueue(new Callback<SearchTrip>() {
-            @Override
-            public void onResponse(Call<SearchTrip> call, Response<SearchTrip> response) {
-                if (!response.isSuccessful()) {
-                    Log.i("TestKamis", "Code: " + response.code());
-                    return;
-                }
-                Log.i("TestKamis", "Code: " + response.code());
-                SearchTrip searchTrip = response.body();
-                segmentLists = searchTrip.getRequestedFlightSegmentList();
-
-
-
-
-                /*for (RequestedFlightSegmentList segmentList : segmentLists) {
-                    flightLists = segmentList.getFlightList();
-                    for (FlightList flight : flightLists) {
-                        String content = "";
-                        content += "Airline: " + flight.getAirline().getName() + "\n";
-                        content += "Arrival: " + flight.getArrival().getDate() + "\n";
-                        content += "Seats: " + flight.getAvailableSeats() + "\n";
-                        content += "Departure Airport: " + flight.getDeparture().getAirport().getName() + "\n";
-                        content += "Cabin: " + flight.getCabin() + "\n\n";
-
-                        for (FareList fare : flight.getFareList()) {
-                            content += "    Fare: " + fare.getType() + "\n";
-                            content += "        Miles: " + fare.getMiles() + "\n";
-                            content += "        Base Miles: " + fare.getBaseMiles() + "\n";
-                            content += "        Money: " + fare.getMoney() + "\n";
-                            content += "        Factor: " + fare.getLoadFactor() + "\n";
-                        }
-
-                        tv.append(content);
-                    }
-                }*/
-            }
-
-            @Override
-            public void onFailure(Call<SearchTrip> call, Throwable t) {
-                Log.i("Test", "Code: " + t.getMessage());
-            }
-        });
-
-
     }
 
     public void getLocations() {
@@ -250,10 +196,12 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         boolean checked = ((CheckBox) cb).isChecked();
         if (checked) {
             isRoundTrip = true;
+            localData.setRoundTrip(true);
             returnLayout.setAnimation(AnimationUtils.loadAnimation(SearchActivity.this, R.anim.dropdown_anim));
             returnLayout.setVisibility(View.VISIBLE);
         } else {
             isRoundTrip = false;
+            localData.setRoundTrip(false);
             returnLayout.setAnimation(AnimationUtils.loadAnimation(SearchActivity.this, R.anim.upward_anim));
             returnLayout.setVisibility(View.GONE);
         }

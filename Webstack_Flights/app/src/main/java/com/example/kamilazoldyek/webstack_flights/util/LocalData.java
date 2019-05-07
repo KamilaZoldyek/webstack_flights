@@ -14,6 +14,7 @@ public class LocalData {
     private String origin = "origin";
     private String destination = "destination";
     private String passengers = "passengers";
+    private String roundTrip = "roundTrip";
 
     public LocalData(Context context) {
         this.sharedPreferences = context.getSharedPreferences(APP_SHARED_PREFERENCES, Context.MODE_PRIVATE);
@@ -47,6 +48,12 @@ public class LocalData {
     public String getPassengers() {return sharedPreferences.getString(passengers, "*");}
     public void setPassengers(String p) {
         editor.putString(passengers, p);
+        editor.commit();
+    }
+
+    public Boolean getRoundTrip() {return sharedPreferences.getBoolean(roundTrip, false);}
+    public void setRoundTrip(Boolean b) {
+        editor.putBoolean(roundTrip, b);
         editor.commit();
     }
 }
