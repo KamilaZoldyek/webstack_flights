@@ -12,7 +12,6 @@ import android.widget.Filter;
 import android.widget.TextView;
 
 import com.example.kamilazoldyek.webstack_flights.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,6 @@ public class AutoCompleteLocationAdapter extends ArrayAdapter<Location> {
         super(context, 0, locationList);
         locationListCOPY = new ArrayList<>(locationList);
         Log.i("Test", "hello autocomplete");
-
     }
 
     public Filter getFilter() {
@@ -35,7 +33,9 @@ public class AutoCompleteLocationAdapter extends ArrayAdapter<Location> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if(convertView == null){
+
+
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.location_autocomplete_row, parent, false);
         }
         TextView airportName = convertView.findViewById(R.id.locationName);
@@ -45,11 +45,12 @@ public class AutoCompleteLocationAdapter extends ArrayAdapter<Location> {
 
         Location location = getItem(position);
 
-        if(location != null){
+        if (location != null) {
             airportName.setText(location.getName());
             airportCode.setText(location.getCode());
             airportCity.setText(location.getCity());
             airportCountry.setText(location.getCountry());
+
         }
 
         return convertView;
@@ -91,7 +92,6 @@ public class AutoCompleteLocationAdapter extends ArrayAdapter<Location> {
             clear();
             addAll((List) filterResults.values);
             notifyDataSetChanged();
-
         }
 
         @Override

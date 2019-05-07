@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:andrid="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -116,6 +117,7 @@
                     <Spinner
                         android:id="@+id/passangersSpinner"
                         style="@style/spinnerStyle"
+
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/editTextHeight"
                         android:layout_weight="11" />
@@ -142,7 +144,7 @@
                     android:text="Quando você vai?" />
 
                 <LinearLayout
-                    android:id="@+id/departureDateLayout"
+                    android:id="@+id/departureTextLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_button"
@@ -166,7 +168,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="7"
                         android:padding="@dimen/padding"
-                        android:text="30 de Setembro, 2019"
+                        android:text="Selecione"
                         android:textSize="@dimen/titleTextSize" />
 
                 </LinearLayout>
@@ -225,14 +227,14 @@
                         app:srcCompat="@drawable/ic_calendar" />
 
                     <TextView
-                        android:id="@+id/voltaDateTV"
+                        android:id="@+id/returnDateTV"
                         style="bodyText"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/editTextHeight"
                         android:layout_gravity="center"
                         android:layout_weight="7"
                         android:padding="@dimen/padding"
-                        android:text="30 de Setembro, 2019"
+                        android:text="Selecione"
                         android:textSize="@dimen/titleTextSize" />
 
                 </LinearLayout>
