@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/padding">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        style="@style/bodyText.big"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/padding"
+        android:text="Viajando no tempo?" />
+
+    <TextView
+        android:id="@+id/dialogBody"
+        style="@style/bodyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/padding"
+        android:text="Infelizmente, ainda não \npodemos viajar no tempo.\n\nPor favor, confira a\ndata escolhida e tente novamente.\n" />
+
+</LinearLayout>

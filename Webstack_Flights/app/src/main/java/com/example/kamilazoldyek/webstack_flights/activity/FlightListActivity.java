@@ -50,7 +50,6 @@ public class FlightListActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private ProgressBar progressBar;
     private LinearLayout errorLayout;
-    private ImageView travelBack, errorIV;
 
 
     @Override
@@ -87,12 +86,8 @@ public class FlightListActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar2);
         errorLayout = findViewById(R.id.error_layout);
         errorTV = findViewById(R.id.error_TV);
-        travelBack = findViewById(R.id.travelerIV);
-        errorIV = findViewById(R.id.errorIV);
 
         errorLayout.setVisibility(View.GONE);
-        travelBack.setVisibility(View.GONE);
-
 
         if (isRoundTrip) {
             isroundtripTV.setText("Ida e volta");
@@ -132,8 +127,6 @@ public class FlightListActivity extends AppCompatActivity {
                     switch (response.code()) {
                         case 400:
                             errorTV.setText(Constant.ERR_400_BAD_INPUT);
-                            errorIV.setVisibility(View.GONE);
-                            travelBack.setVisibility(View.VISIBLE);
                             break;
                         case 401:
                             errorTV.setText(Constant.ERR_401_NOT_LOGGED);

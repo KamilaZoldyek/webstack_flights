@@ -170,7 +170,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/departureLayout"
+                android:id="@+id/departureDateLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
@@ -237,7 +237,7 @@
 
 
             <LinearLayout
-                android:id="@+id/returnLayout"
+                android:id="@+id/returnDateLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"

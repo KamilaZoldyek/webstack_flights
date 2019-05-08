@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -24,11 +25,16 @@ import android.widget.TextView;
 import com.example.kamilazoldyek.webstack_flights.R;
 import com.example.kamilazoldyek.webstack_flights.adapter.AutoCompleteLocationAdapter;
 import com.example.kamilazoldyek.webstack_flights.fragment.DatePickerFragment;
+import com.example.kamilazoldyek.webstack_flights.util.Constant;
 import com.example.kamilazoldyek.webstack_flights.util.CustomDateFormat;
 import com.example.kamilazoldyek.webstack_flights.util.LocalData;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import io.swagger.client.ApiClient;
@@ -50,7 +56,9 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
     private Toolbar toolbar;
     private TextView toolbarTV, departureDateTV, returnDateTV;
     private AutoCompleteTextView originAutoComplete, destinationAutoComplete;
-    private LinearLayout returnLayout, layout, departurePickerLayout;
+    private LinearLayout returnLayout, layout, departurePickerLayout,
+            originLayout, destLayout, passagersLayout, departureDateLayout,
+            returnQuestionLayout, returnDateLayout;
     private CheckBox checkBox;
     private Spinner passengersSpinner;
     private String departureDate, returnDate;
@@ -94,21 +102,24 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         api = apiClient.createService();
 
         //        views
-        returnLayout = findViewById(R.id.returnLayout);
+        returnLayout = findViewById(R.id.returnDateLayout);
         checkBox = findViewById(R.id.checkBox);
         passengersSpinner = findViewById(R.id.passangersSpinner);
         layout = findViewById(R.id.originLayout);
         originAutoComplete = findViewById(R.id.autoCompleteOrigin);
         destinationAutoComplete = findViewById(R.id.autoCompleteDestination);
-        departurePickerLayout = findViewById(R.id.departureLayout);
+        departurePickerLayout = findViewById(R.id.departureDateLayout);
         departureDateTV = findViewById(R.id.departureDateTV);
         returnDateTV = findViewById(R.id.returnDateTV);
         searchButton = findViewById(R.id.button_search);
-
+        originLayout = findViewById(R.id.originLayout);
+        destLayout = findViewById(R.id.destLayout);
+        passagersLayout = findViewById(R.id.passagersLayout);
+        departureDateLayout = findViewById(R.id.departureDateLayout);
+        returnQuestionLayout = findViewById(R.id.returnQuestionLayout);
+        returnDateLayout = findViewById(R.id.returnDateLayout);
 
         layout.requestFocus();
-        searchButton.setVisibility(View.GONE);
-
 
         //        checkbox
         checkBox.setChecked(false);
@@ -149,22 +160,33 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
             @Override
             public void onClick(View view) {
                 localData.setPassengers(passengersSpinner.getSelectedItem().toString());
-                Intent intent = new Intent(SearchActivity.this, FlightListActivity.class);
-                startActivity(intent);
+
+                if (isSomethingEmpty()) {
+                    openDialog(R.layout.error_no_date_dialog, "common");
+                } else if (localData.getRoundTrip()) {
+                    if (localData.getReturnDate().equals("")) {
+                        openDialog(R.layout.error_no_date_dialog, "common");
+                    } else {
+                        Intent intent = new Intent(SearchActivity.this, FlightListActivity.class);
+                        startActivity(intent);
+                    }
+                }
             }
         });
+
 
 //        Listener for when done typing an destination airport
         destinationAutoComplete.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 View v = destinationAutoComplete;
-                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(actionId == EditorInfo.IME_ACTION_DONE){
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
                     destinationAutoComplete.setSelection(0);
                     destinationAutoComplete.clearFocus();
                     layout.requestFocus();
                     inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
                 }
                 return false;
             }
@@ -178,12 +200,12 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
             @Override
             public void onResponse(Call<List<Location>> call, Response<List<Location>> response) {
                 if (!response.isSuccessful()) {
-                   openDialog(R.layout.error_dialog, true);
+                    openDialog(R.layout.error_dialog, "fatal");
 
                 }
 
                 locationList = response.body();
-                if(!locationList.isEmpty()){
+                if (!locationList.isEmpty()) {
                     AutoCompleteLocationAdapter adapterLoc = new AutoCompleteLocationAdapter(SearchActivity.this, locationList);
                     originAutoComplete.setAdapter(adapterLoc);
                     destinationAutoComplete.setAdapter(adapterLoc);
@@ -191,28 +213,33 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                     originAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-                            Location current = (Location)parent.getItemAtPosition(position);
+                            Location current = (Location) parent.getItemAtPosition(position);
                             localData.setDepartureCode(current.getCode());
                             localData.setOrigCity(current.getCity());
+
+
                         }
                     });
 
                     destinationAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-                            Location current = (Location)parent.getItemAtPosition(position);
+                            Location current = (Location) parent.getItemAtPosition(position);
                             localData.setArrivalCode(current.getCode());
                             localData.setDestCity(current.getCity());
+
+
                         }
                     });
-                }else {
-                    openDialog(R.layout.error_dialog, true);
+                } else {
+                    openDialog(R.layout.error_dialog, "fatal");
 
                 }
             }
+
             @Override
             public void onFailure(Call<List<Location>> call, Throwable t) {
-                openDialog(R.layout.error_dialog, true);
+                openDialog(R.layout.error_dialog, "fatal");
 
             }
         });
@@ -228,13 +255,12 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         } else {
             isRoundTrip = false;
             localData.setRoundTrip(false);
-            localData.setReturnDate("");
             returnLayout.setAnimation(AnimationUtils.loadAnimation(SearchActivity.this, R.anim.upward_anim));
             returnLayout.setVisibility(View.GONE);
         }
     }
 
-    public void openDateDialog(){
+    public void openDateDialog() {
         DatePickerFragment datepickDialog = new DatePickerFragment();
         datepickDialog.show(getSupportFragmentManager(), "Picker");
     }
@@ -248,18 +274,35 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         c.set(Calendar.DAY_OF_MONTH, d);
 
 
-        if(isRoundTrip){
-            returnDate = y + "-" + (m+1) + "-" + (d+1);
-            date = CustomDateFormat.CustomDateFormatA(returnDate);
+        if (isRoundTrip) {
+            returnDate = y + "-" + (m + 1) + "-" + (d);
+            if (isPast(returnDate, departureDate, 2)) {
+                openDialog(R.layout.error_time_dialog, "return");
+                returnDateTV.setText("Toque para selecionar");
+            }
+            String temp = y + "-" + (m + 1) + "-" + (d);
+            date = CustomDateFormat.CustomDateFormatA(temp);
             returnDateTV.setText(date);
             localData.setReturnDate(returnDate);
 
-        }else {
-            departureDate = y + "-" + (m+1) + "-" + (d+1);
-            date = CustomDateFormat.CustomDateFormatA(departureDate);
+        } else {
+            departureDate = y + "-" + (m + 1) + "-" + (d);
+            if (isPast(departureDate, "*", 1)) {
+                openDialog(R.layout.error_time_dialog, "departure");
+                departureDateTV.setText("Toque para selecionar");
+            }
+            if (!(returnDate == null)) {
+                if(returnDate.equalsIgnoreCase("")) {
+                    if (isPast(returnDate, departureDate, 2)) {
+                        openDialog(R.layout.error_time_dialog, "departure");
+                        departureDateTV.setText("Toque para selecionar");
+                    }
+                }
+            }
+            String temp = y + "-" + (m + 1) + "-" + (d);
+            date = CustomDateFormat.CustomDateFormatA(temp);
             departureDateTV.setText(date);
             localData.setDepartureDate(departureDate);
-            searchButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -278,11 +321,9 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
     @Override
     protected void onResume() {
         super.onResume();
-        // TODO: 06/05/19 reseta tudo aqui
     }
 
-
-    public void openDialog(int layout, final boolean fatalError){ //recebe o int do layout, r.layout.nome_do_layout
+    public void openDialog(int layout, final String type) { //recebe o int do layout, r.layout.nome_do_layout
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(SearchActivity.this);
         View mView = getLayoutInflater().inflate(layout, null);
@@ -290,15 +331,82 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         mBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-                if(fatalError)
-                    finish();
+
+                switch (type) {
+                    case "fatal":
+                        finish();
+                        break;
+                    case "common":
+                        dialogInterface.dismiss();
+                        break;
+                    case "departure":
+                        departureDateTV.setText("Toque para selecionar");
+                        localData.setDepartureDate("*");
+                        dialogInterface.dismiss();
+                        break;
+                    case "return":
+                        returnDateTV.setText("Toque para selecionar");
+                        localData.setReturnDate("");
+                        dialogInterface.dismiss();
+                        break;
+                    default:
+                        dialogInterface.dismiss();
+                }
+
             }
         });
         mBuilder.setView(mView)
                 .create()
                 .show();
 
+
+    }
+
+    public boolean isPast(String toTest, String control, int type) {
+        boolean isPast = false;
+        switch (type) {
+            case 1: //before today
+                try {
+                    if (new SimpleDateFormat("yyyy-MM-dd").parse(toTest).before(new Date())) {
+                        isPast = true;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case 2: //before return date
+                if (control == null || control.equalsIgnoreCase("*") || control.equalsIgnoreCase("")) {
+                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    control = df.format(new Date());
+                }
+                if (toTest == null || toTest.equalsIgnoreCase("*") || toTest.equalsIgnoreCase("")) {
+                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    toTest = df.format(new Date());
+                }
+
+                try {
+                    if (new SimpleDateFormat("yyyy-MM-dd").parse(toTest)
+                            .before(new SimpleDateFormat("yyyy-MM-dd").parse(control))) {
+                        isPast = true;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+        return isPast;
+    }
+
+    public boolean isSomethingEmpty() {
+        boolean isSomethingEmpty = false;
+        if (localData.getDepartureDate().equalsIgnoreCase("*")
+                || localData.getArrivalCode().equalsIgnoreCase("*")
+                || localData.getDepartureCode().equalsIgnoreCase("*")
+        ) {
+            isSomethingEmpty = true;
+        }
+        return isSomethingEmpty;
     }
 
 

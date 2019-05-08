@@ -160,13 +160,6 @@
                     android:tint="@color/lightGray200"
                     app:srcCompat="@drawable/ic_error" />
 
-                <ImageView
-                    android:id="@+id/travelerIV"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:tint="@color/lightGray200"
-                    app:srcCompat="@drawable/ic_travel_back" />
-
                 <TextView
                     style="@style/bodyText.big"
                     android:layout_width="match_parent"
