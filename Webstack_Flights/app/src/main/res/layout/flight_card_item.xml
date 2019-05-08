@@ -24,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@color/royalBlue"
                 android:background="@drawable/round_button_filled">
 
                 <LinearLayout
@@ -33,21 +34,31 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/isDeparture"
                         style="@style/bodyText.big.title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="@dimen/padding"
-                        android:text="Volta"
+                        android:text="Ida"
                         android:textColor="@color/white" />
 
                     <ImageView
-                        android:id="@+id/imageView7"
+                        android:id="@+id/departureIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:paddingStart="@dimen/padding"
+                        android:tint="@color/white"
+                        app:srcCompat="@drawable/ic_departure" />
+                    <ImageView
+                        android:id="@+id/returnIV"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="start"
                         android:paddingStart="@dimen/padding"
                         android:tint="@color/white"
                         app:srcCompat="@drawable/ic_arrival" />
+
                 </LinearLayout>
 
             </FrameLayout>
@@ -63,6 +74,24 @@
             android:paddingEnd="4dp">
 
             <TextView
+                android:id="@+id/flightCompanyTV"
+                style="@style/bodyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="LOREM IPSUM" />
+
+            <TextView
+                style="@style/bodyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:text=" • " />
+
+            <TextView
                 android:id="@+id/departureDateTV"
                 style="@style/bodyText"
                 android:layout_width="wrap_content"
@@ -71,16 +100,6 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:text="DD-MM-AAAA" />
-
-            <TextView
-                android:id="@+id/flightCompanyTV"
-                style="@style/bodyText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="Empresa" />
 
         </LinearLayout>
 
@@ -110,6 +129,19 @@
                     android:textSize="@dimen/textSizeHuge" />
 
                 <TextView
+                    android:id="@+id/departureAirportCode"
+                    style="@style/bodyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="Airport Name that cam be very very very very long" />
+
+                <TextView
                     android:id="@+id/departureAirportName"
                     style="@style/captionText.gray"
                     android:layout_width="wrap_content"
@@ -121,6 +153,34 @@
                     android:lines="3"
                     android:padding="4dp"
                     android:text="Airport Name that cam be very very very very long" />
+
+                <TextView
+                    android:id="@+id/departureLocalDate"
+                    style="@style/captionText.gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="Airport Name that cam be very very very very long" />
+
+
+                <TextView
+                    android:id="@+id/departureAirportCity"
+                    style="@style/captionText.gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="Airport Name that cam be very very very very long" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -156,16 +216,6 @@
                         android:padding="0dp"
                         android:text="HH:MM" />
 
-                    <TextView
-                        style="@style/captionText.gray"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0"
-                        android:ellipsize="end"
-                        android:gravity="center"
-                        android:padding="0dp"
-                        android:text="Duração" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -188,6 +238,19 @@
                     android:textSize="@dimen/textSizeHuge" />
 
                 <TextView
+                    android:id="@+id/arrivalAirportCode"
+                    style="@style/bodyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="Airport Name that cam be very very very very long" />
+
+                <TextView
                     android:id="@+id/arrivalAirportName"
                     style="@style/captionText.gray"
                     android:layout_width="wrap_content"
@@ -198,7 +261,34 @@
                     android:gravity="center"
                     android:lines="3"
                     android:padding="4dp"
-                    android:text="Airport name that can be very very long" />
+                    android:text="Airport Name that cam be very very very very long" />
+
+                <TextView
+                    android:id="@+id/arrivalLocalDate"
+                    style="@style/captionText.gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="Airport Name that cam be very very very very long" />
+
+
+                <TextView
+                    android:id="@+id/arrivalAirportCity"
+                    style="@style/captionText.gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="Airport Name that cam be very very very very long" />
             </LinearLayout>
         </LinearLayout>
 
@@ -213,22 +303,28 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:padding="@dimen/padding">
+                android:paddingStart="@dimen/padding"
+                android:paddingEnd="@dimen/padding">
+
+
 
                 <TextView
+                    android:id="@+id/detailTV"
                     style="@style/bodyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
+                    android:layout_weight="1"
                     android:ellipsize="end"
+                    android:padding="@dimen/padding"
                     android:text="Detalhes" />
 
                 <ImageView
                     android:id="@+id/detailIV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:background="@drawable/round_button_filled"
+                    android:padding="@dimen/padding"
                     android:tint="@color/white"
                     app:srcCompat="@drawable/ic_dropdown" />
 
@@ -249,25 +345,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:paddingStart="4dp">
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:padding="4dp"
                     android:tint="@color/royalBlue"
                     app:srcCompat="@drawable/ic_cabin" />
 
                 <TextView
                     android:id="@+id/cabinTypeTV"
                     style="@style/captionText.gray"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:ellipsize="end"
-                    android:padding="4dp"
-                    android:text="Cabine Busisness" />
+                    android:padding="@dimen/padding"
+                    android:text="LOREM IPSUM" />
 
             </LinearLayout>
 
@@ -280,7 +376,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
+                    android:padding="4dp"
                     android:tint="@color/royalBlue"
                     app:srcCompat="@drawable/ic_stop" />
 
@@ -289,10 +385,10 @@
                     style="@style/captionText.gray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="1"
                     android:ellipsize="end"
-                    android:padding="4dp"
-                    android:text="00 escalas" />
+                    android:padding="@dimen/padding"
+                    android:text="LOREM IPSUM" />
 
             </LinearLayout>
 
@@ -305,7 +401,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
+                    android:padding="4dp"
                     android:tint="@color/royalBlue"
                     app:srcCompat="@drawable/ic_seat" />
 
@@ -314,10 +410,10 @@
                     style="@style/captionText.gray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="1"
                     android:ellipsize="end"
-                    android:padding="4dp"
-                    android:text="00 assentos" />
+                    android:padding="@dimen/padding"
+                    android:text="LOREM IPSUM" />
 
             </LinearLayout>
 
@@ -330,7 +426,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="4dp"
+                    android:padding="4dp"
                     android:tint="@color/royalBlue"
                     app:srcCompat="@drawable/ic_takeoff" />
 
@@ -339,65 +435,72 @@
                     style="@style/captionText.gray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="1"
                     android:ellipsize="end"
-                    android:padding="4dp"
-                    android:text="Voo numero 12345" />
+                    android:padding="@dimen/padding"
+                    android:text="LOREM IPSUM" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/priceAndBuyLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="@dimen/padding">
+                android:paddingStart="4dp"
+                android:paddingTop="@dimen/doublePadding"
+                android:paddingEnd="4dp"
+                android:paddingBottom="@dimen/doublePadding">
 
                 <LinearLayout
                     android:id="@+id/valueLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_gravity="start"
                     android:layout_weight="1"
+                    android:gravity="start"
                     android:orientation="horizontal"
-                    android:padding="4dp">
+                    android:paddingTop="@dimen/padding"
+                    android:paddingBottom="@dimen/padding">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:gravity="center"
                         android:tint="@color/royalBlue"
-                        app:srcCompat="@drawable/ic_value" />
+                        app:srcCompat="@drawable/ic_plane" />
 
                     <TextView
                         android:id="@+id/milesTV"
                         style="@style/bodyText.big"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text="32.000 Milhas"
+                        android:layout_gravity="start"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="LOREM IPSUM"
                         android:textColor="@color/royalBlue" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/buyFlight"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/round_button_filled"
+                    android:gravity="end"
                     android:orientation="horizontal"
-                    android:padding="4dp">
+                    android:padding="@dimen/padding">
 
                     <ImageView
-                        android:id="@+id/imageView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:paddingStart="@dimen/padding"
                         android:tint="@color/white"
                         app:srcCompat="@drawable/ic_cart" />
 
@@ -407,6 +510,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="2"
+                        android:paddingEnd="@dimen/padding"
+                        android:paddingStart="@dimen/padding"
                         android:gravity="center"
                         android:text="Comprar" />
                 </LinearLayout>

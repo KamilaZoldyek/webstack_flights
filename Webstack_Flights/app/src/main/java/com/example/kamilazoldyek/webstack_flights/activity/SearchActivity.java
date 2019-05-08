@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,7 +31,6 @@ import io.swagger.client.api.DefaultApi;
 import io.swagger.client.model.Location;
 import io.swagger.client.model.search.FlightList;
 import io.swagger.client.model.search.RequestedFlightSegmentList;
-import io.swagger.client.model.search.SearchTrip;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -155,11 +153,11 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                     destinationAutoComplete.setAdapter(adapterLoc);
 //
 //                    String or = originAutoComplete.getText().toString();
-//                    localData.setOrigin(or);
+//                    localData.setDepartureCode(or);
 //                    Log.i("kamis", or);
 //
 //                    String dp = originAutoComplete.getText().toString();
-//                    localData.setOrigin(dp);
+//                    localData.setDepartureCode(dp);
 //                    Log.i("kamis", dp);
 
 
@@ -168,7 +166,8 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
                             Location current = (Location)parent.getItemAtPosition(position);
-                            localData.setOrigin(current.getCode());
+                            localData.setDepartureCode(current.getCode());
+                            localData.setOrigCity(current.getCity());
                         }
                     });
 
@@ -176,7 +175,8 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
                             Location current = (Location)parent.getItemAtPosition(position);
-                            localData.setDestination(current.getCode());
+                            localData.setArrivalCode(current.getCode());
+                            localData.setDestCity(current.getCity());
                         }
                     });
 
@@ -223,13 +223,13 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
 
         if(isRoundTrip){
             returnDate = y + "-" + (m+1) + "-" + d;
-            date = CustomDateFormat.CustomDateFormat(returnDate);
+            date = CustomDateFormat.CustomDateFormatA(returnDate);
             returnDateTV.setText(date);
             localData.setReturnDate(returnDate);
 
         }else {
             departureDate = y + "-" + (m+1) + "-" + d;
-            date = CustomDateFormat.CustomDateFormat(departureDate);
+            date = CustomDateFormat.CustomDateFormatA(departureDate);
             departureDateTV.setText(date);
             localData.setDepartureDate(departureDate);
             searchButton.setVisibility(View.VISIBLE);

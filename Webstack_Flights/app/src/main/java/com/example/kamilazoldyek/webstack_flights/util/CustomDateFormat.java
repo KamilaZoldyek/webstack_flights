@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class CustomDateFormat {
 
-    public static String CustomDateFormat(String date) {
+    public static String CustomDateFormatA(String date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date newDate = null;
         try {
@@ -21,4 +21,34 @@ public class CustomDateFormat {
 
         return formatedDate;
     }
+    public static String CustomDateFormatDate(String date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        Date newDate = null;
+        try {
+            newDate = format.parse(date);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        format = new SimpleDateFormat("dd/MM", Locale.UK);
+        String formatedDate = format.format(newDate);
+
+        return formatedDate;
+    }
+
+    public static String CustomDateFormatTime(String date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        Date newDate = null;
+        try {
+            newDate = format.parse(date);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        format = new SimpleDateFormat("HH:mm", Locale.UK);
+        String formatedDate = format.format(newDate);
+
+        return formatedDate;
+    }
+
 }

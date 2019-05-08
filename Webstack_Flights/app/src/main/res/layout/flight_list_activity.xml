@@ -1,105 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/toolbar"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_margin="@dimen/margin"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-            <LinearLayout
+            <include
+                layout="@layout/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/textView2"
-                    style="@style/bodyText.big"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:padding="@dimen/padding"
-                    android:text="Belo Horizonte" />
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-
-                    android:padding="@dimen/padding"
-                    android:tint="@color/royalBlue"
-                    app:srcCompat="@drawable/ic_180plane" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    style="@style/bodyText.big"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:padding="@dimen/padding"
-                    android:text="Los Angeles" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="100dp">
 
-                <TextView
-                    android:id="@+id/textView5"
-                    style="@style/captionText.gray"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:layout_weight="1"
-                    android:padding="@dimen/padding"
-                    android:text="Ida e volta" />
-                <TextView
-                    android:id="@+id/textView6"
-                    style="@style/captionText.gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:layout_weight="1"
-                    android:padding="@dimen/padding"
-                    android:text="XX passageiros" />
-            </LinearLayout>
+                    android:layout_margin="@dimen/margin"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/departCityTV"
+                                style="@style/bodyText.big"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:padding="@dimen/padding"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:lines="1"
+                                android:text="Belo Horizonte" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="@dimen/padding"
+                            android:tint="@color/royalBlue"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_180plane" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/arrivCityTV"
+                                style="@style/bodyText.big"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:padding="@dimen/padding"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:lines="1"
+                                android:text="Los Angeles" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+
+
+                        <TextView
+                            android:id="@+id/isRoundTrip"
+                            style="@style/captionText.gray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:padding="@dimen/padding"
+                            android:text="Ida e volta" />
+
+
+                        <TextView
+                            style="@style/captionText.gray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:padding="@dimen/padding"
+                            android:text=" • " />
+
+                        <TextView
+                            android:id="@+id/passTV"
+                            style="@style/captionText.gray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:padding="@dimen/padding"
+                            android:text="XX passageiros" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin" />
 
         </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-    </FrameLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin"/>
 </LinearLayout>

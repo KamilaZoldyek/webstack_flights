@@ -15,6 +15,10 @@ public class LocalData {
     private String destination = "destination";
     private String passengers = "passengers";
     private String roundTrip = "roundTrip";
+    private String origCity = "origCity";
+    private String destCity = "destCity";
+    private String isDeparture = "isDep";
+    private String isReturn = "isRet";
 
     public LocalData(Context context) {
         this.sharedPreferences = context.getSharedPreferences(APP_SHARED_PREFERENCES, Context.MODE_PRIVATE);
@@ -33,21 +37,45 @@ public class LocalData {
         editor.commit();
     }
 
-    public String getOrigin() {return sharedPreferences.getString(origin, "*"); }
-    public void setOrigin(String o) {
+    public String getDepartureCode() {return sharedPreferences.getString(origin, "*"); }
+    public void setDepartureCode(String o) {
         editor.putString(origin, o);
         editor.commit();
     }
 
-    public String getDestination() {return sharedPreferences.getString(destination, "*");}
-    public void setDestination(String d) {
+    public String getArrivalCode() {return sharedPreferences.getString(destination, "*");}
+    public void setArrivalCode(String d) {
         editor.putString(destination, d);
+        editor.commit();
+    }
+
+    public String getOrigCity() {return sharedPreferences.getString(origCity, "*");}
+    public void setOrigCity(String c) {
+        editor.putString(origCity, c);
+        editor.commit();
+    }
+
+    public String getDestCity() {return sharedPreferences.getString(destCity, "*");}
+    public void setDestCity(String c) {
+        editor.putString(destCity, c);
         editor.commit();
     }
 
     public String getPassengers() {return sharedPreferences.getString(passengers, "*");}
     public void setPassengers(String p) {
         editor.putString(passengers, p);
+        editor.commit();
+    }
+
+    public Boolean getIsDeparture() {return sharedPreferences.getBoolean(isDeparture, false);}
+    public void setIsDeparture(Boolean b) {
+        editor.putBoolean(isDeparture, b);
+        editor.commit();
+    }
+
+    public Boolean getIsReturn() {return sharedPreferences.getBoolean(isReturn, false);}
+    public void setIsReturn(Boolean b) {
+        editor.putBoolean(isReturn, b);
         editor.commit();
     }
 
