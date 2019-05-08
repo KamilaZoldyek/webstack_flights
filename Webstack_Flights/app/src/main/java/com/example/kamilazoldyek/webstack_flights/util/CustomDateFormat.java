@@ -3,7 +3,6 @@ package com.example.kamilazoldyek.webstack_flights.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class CustomDateFormat {
 

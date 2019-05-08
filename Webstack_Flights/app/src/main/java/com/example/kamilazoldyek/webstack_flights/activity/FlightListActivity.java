@@ -34,10 +34,8 @@ public class FlightListActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView toolbarTV, isroundtripTV, passTV,
-            departCityTV, arrivCityTV, depAirportNameTV, arrAirportNameTV, errorTV;
+            departCityTV, arrivCityTV, errorTV;
 
-    private List<Location> locationList;
-    private List<FlightList> flightLists;
     private List<RequestedFlightSegmentList> segmentLists;
 
     private ApiClient apiClient;
@@ -66,8 +64,6 @@ public class FlightListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbarTV.setText("Voos");
 
-        locationList = new ArrayList<>();
-        flightLists = new ArrayList<>();
         segmentLists = new ArrayList<>();
 
         //            Start API service
@@ -165,6 +161,7 @@ public class FlightListActivity extends AppCompatActivity {
                     errorTV.setText("");
                 }
             }
+
             @Override
             public void onFailure(Call<SearchTrip> call, Throwable t) {
                 errorLayout.setVisibility(View.VISIBLE);

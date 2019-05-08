@@ -56,9 +56,7 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
     private Toolbar toolbar;
     private TextView toolbarTV, departureDateTV, returnDateTV;
     private AutoCompleteTextView originAutoComplete, destinationAutoComplete;
-    private LinearLayout returnLayout, layout, departurePickerLayout,
-            originLayout, destLayout, passagersLayout, departureDateLayout,
-            returnQuestionLayout, returnDateLayout;
+    private LinearLayout returnLayout, layout, departurePickerLayout;
     private CheckBox checkBox;
     private Spinner passengersSpinner;
     private String departureDate, returnDate;
@@ -112,12 +110,7 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         departureDateTV = findViewById(R.id.departureDateTV);
         returnDateTV = findViewById(R.id.returnDateTV);
         searchButton = findViewById(R.id.button_search);
-        originLayout = findViewById(R.id.originLayout);
-        destLayout = findViewById(R.id.destLayout);
-        passagersLayout = findViewById(R.id.passagersLayout);
-        departureDateLayout = findViewById(R.id.departureDateLayout);
-        returnQuestionLayout = findViewById(R.id.returnQuestionLayout);
-        returnDateLayout = findViewById(R.id.returnDateLayout);
+
 
         layout.requestFocus();
 
@@ -167,7 +160,6 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                         if (localData.getRoundTrip()) {
                             if (localData.getReturnDate().equals("")) {
                                 openDialog(R.layout.error_no_date_dialog, "common");
-                                Log.i(Constant.TEST, "onclick");
                             }
                             else {
                                     Intent intent = new Intent(SearchActivity.this, FlightListActivity.class);
@@ -192,7 +184,6 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                     destinationAutoComplete.clearFocus();
                     layout.requestFocus();
                     inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-
                 }
                 return false;
             }
@@ -207,7 +198,6 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
             public void onResponse(Call<List<Location>> call, Response<List<Location>> response) {
                 if (!response.isSuccessful()) {
                     openDialog(R.layout.error_dialog, "fatal");
-
                 }
 
                 locationList = response.body();
@@ -222,8 +212,6 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                             Location current = (Location) parent.getItemAtPosition(position);
                             localData.setDepartureCode(current.getCode());
                             localData.setOrigCity(current.getCity());
-
-
                         }
                     });
 
@@ -233,8 +221,6 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                             Location current = (Location) parent.getItemAtPosition(position);
                             localData.setArrivalCode(current.getCode());
                             localData.setDestCity(current.getCity());
-
-
                         }
                     });
                 } else {

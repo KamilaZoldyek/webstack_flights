@@ -6,7 +6,6 @@
     android:padding="@dimen/padding">
 
     <TextView
-        android:id="@+id/dialogTitle"
         style="@style/bodyText.big"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +15,6 @@
         android:text="Quase lá..." />
 
     <TextView
-        android:id="@+id/dialogBody"
         style="@style/bodyText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

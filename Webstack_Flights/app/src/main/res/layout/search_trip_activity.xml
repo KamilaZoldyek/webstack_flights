@@ -18,7 +18,6 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/layout"
             android:focusable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +34,6 @@
                 android:padding="@dimen/padding">
 
                 <TextView
-                    android:id="@+id/origemTV"
                     style="bodyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,7 +81,6 @@
                 android:padding="@dimen/padding">
 
                 <TextView
-                    android:id="@+id/destinoTV"
                     style="bodyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,7 +98,6 @@
                     android:weightSum="1">
 
                     <ImageView
-                        android:id="@+id/imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
@@ -142,7 +138,6 @@
                     android:text="Quantas pessoas?" />
 
                 <LinearLayout
-                    android:id="@+id/passengersLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_button"
@@ -178,7 +173,6 @@
                 android:padding="@dimen/padding">
 
                 <TextView
-                    android:id="@+id/textView"
                     style="bodyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -187,7 +181,6 @@
                     android:text="Quando você vai?" />
 
                 <LinearLayout
-                    android:id="@+id/departureTextLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_button"
@@ -253,7 +246,6 @@
                     android:text="Quando você volta?" />
 
                 <LinearLayout
-                    android:id="@+id/voltaDateLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_button"

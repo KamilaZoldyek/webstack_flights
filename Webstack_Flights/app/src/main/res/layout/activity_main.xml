@@ -20,19 +20,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/home_bg" />
 
         <ImageView
-            android:id="@+id/gradientOverlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/gradient" />
 
         <TextView
-            android:id="@+id/callToAction"
             style="@style/callToActionText"
             android:layout_width="187dp"
             android:layout_height="250dp"
@@ -62,7 +59,6 @@
         app:layout_constraintVertical_bias="0.841" />
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

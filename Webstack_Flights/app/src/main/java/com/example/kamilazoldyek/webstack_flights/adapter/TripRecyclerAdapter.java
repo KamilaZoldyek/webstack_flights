@@ -81,7 +81,8 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
 
                     v.arrivalAirportNameTV.setVisibility(View.VISIBLE);
                     v.arrivalAirportNameTV.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.dropdown_anim));
-                }else {
+                }
+                else {
                     v.detailIV.animate().rotation(0).start();
                     v.detailLayout.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.upward_anim));
                     v.detailLayout.setVisibility(View.GONE);
@@ -167,11 +168,6 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
         }
         v.durationTimeTV.setText(flights.getDuration() + "h \n Duração");
 
-
-
-
-//        v.detailLayout.setVisibility(View.GONE);
-
     }
 
     @Override
@@ -186,10 +182,10 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
                 arrivalTimeTV, arrivalAirportNameTV, cabinTypeTV,
                 stopsTV, seatsTV, flightNumberTV, departureAirportCode,
                 departureAirportCity,arrivalAirportCode, detailTV,
-                departureLocaldate, arrivalLocalDate, arrivalAirportCity, milesTV;
+                departureLocaldate, arrivalLocalDate, arrivalAirportCity;
 
         public ImageView detailIV, departureIV, returnIV;
-        public LinearLayout detailLayout, valueLayout, buyFlightLayout;
+        public LinearLayout detailLayout;
         public RadioButton milesRadio, milesMoneyRadio;
 
         public ViewHolder(@NonNull View v) {
@@ -219,8 +215,6 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
             detailTV = v.findViewById(R.id.detailTV);
             milesRadio = v.findViewById(R.id.miles);
             milesMoneyRadio = v.findViewById(R.id.miles_money);
-
-
 
         }
     }

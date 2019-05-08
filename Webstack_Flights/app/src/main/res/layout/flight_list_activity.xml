@@ -56,7 +56,6 @@
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -154,7 +153,6 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/errorIV"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:tint="@color/lightGray200"
