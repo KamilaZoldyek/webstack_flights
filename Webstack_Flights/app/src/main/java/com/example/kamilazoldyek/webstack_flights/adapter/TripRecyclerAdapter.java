@@ -55,11 +55,10 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
         final FlightList flights = flightList.get(position);
 
         v.detailLayout.setVisibility(View.GONE);
-        v.departureAirportCity.setVisibility(View.GONE);
-        v.arrivalAirportCity.setVisibility(View.GONE);
-        v.departureAirportNmeTV.setVisibility(View.GONE);
+        v.arrivalAirportCode.setVisibility(View.GONE);
+        v.departureAirportCode.setVisibility(View.GONE);
         v.arrivalAirportNameTV.setVisibility(View.GONE);
-
+        v.departureAirportNmeTV.setVisibility(View.GONE);
         v.detailIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,14 +69,14 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
                     v.detailLayout.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.dropdown_anim));
                     v.detailLayout.setVisibility(View.VISIBLE);
 
-                    v.departureAirportCity.setVisibility(View.VISIBLE);
-                    v.departureAirportCity.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.dropdown_anim));
-
-                    v.arrivalAirportCity.setVisibility(View.VISIBLE);
-                    v.arrivalAirportCity.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.dropdown_anim));
+                    v.arrivalAirportCode.setVisibility(View.VISIBLE);
+                    v.arrivalAirportCode.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.dropdown_anim));
 
                     v.departureAirportNmeTV.setVisibility(View.VISIBLE);
                     v.departureAirportNmeTV.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.dropdown_anim));
+
+                    v.departureAirportCode.setVisibility(View.VISIBLE);
+                    v.departureAirportCode.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.dropdown_anim));
 
                     v.arrivalAirportNameTV.setVisibility(View.VISIBLE);
                     v.arrivalAirportNameTV.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.dropdown_anim));
@@ -86,14 +85,15 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
                     v.detailLayout.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.upward_anim));
                     v.detailLayout.setVisibility(View.GONE);
 
-                    v.departureAirportCity.setVisibility(View.GONE);
-                    v.departureAirportCity.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.upward_anim));
-
-                    v.arrivalAirportCity.setVisibility(View.GONE);
-                    v.arrivalAirportCity.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.upward_anim));
+                    v.arrivalAirportCode.setVisibility(View.GONE);
+                    v.arrivalAirportCode.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.upward_anim));
 
                     v.departureAirportNmeTV.setVisibility(View.GONE);
                     v.departureAirportNmeTV.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.upward_anim));
+
+                    v.departureAirportCode.setVisibility(View.GONE);
+                    v.departureAirportCode.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.upward_anim));
+
 
                     v.arrivalAirportNameTV.setVisibility(View.GONE);
                     v.arrivalAirportNameTV.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.upward_anim));

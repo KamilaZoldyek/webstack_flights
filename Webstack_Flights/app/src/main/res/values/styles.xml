@@ -24,7 +24,7 @@
     <style name="ToolbarTextAppearance">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/lightGray</item>
+        <item name="android:textColor">@color/lightGray300</item>
 
     </style>
 
@@ -85,7 +85,7 @@
     </style>
 
     <style name="captionText.gray" parent="captionText">
-        <item name="android:textColor">@color/lightGray</item>
+        <item name="android:textColor">@color/lightGray300</item>
     </style>
 
     <style name="bodyText" parent="TextAppearance.AppCompat">

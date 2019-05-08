@@ -232,7 +232,7 @@
                     android:onClick="onCheckboxClicked"
                     android:text="Viagem de volta também!"
                     android:textAppearance="@style/bodyText"
-                    android:textColor="@color/lightGray"/>
+                    android:textColor="@color/lightGray300"/>
             </LinearLayout>
 
 

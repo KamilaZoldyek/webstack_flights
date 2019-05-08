@@ -30,7 +30,7 @@ public class CustomDateFormat {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        format = new SimpleDateFormat("dd/MM", Locale.UK);
+        format = new SimpleDateFormat("EE, dd/MM");
         String formatedDate = format.format(newDate);
 
         return formatedDate;
@@ -45,7 +45,7 @@ public class CustomDateFormat {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        format = new SimpleDateFormat("HH:mm", Locale.UK);
+        format = new SimpleDateFormat("HH:mm");
         String formatedDate = format.format(newDate);
 
         return formatedDate;

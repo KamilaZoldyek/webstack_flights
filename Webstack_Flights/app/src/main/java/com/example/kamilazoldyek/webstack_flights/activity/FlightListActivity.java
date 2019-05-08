@@ -6,14 +6,15 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.kamilazoldyek.webstack_flights.R;
-import com.example.kamilazoldyek.webstack_flights.adapter.OneWayTripRecyclerAdapter;
 import com.example.kamilazoldyek.webstack_flights.adapter.TripRecyclerAdapter;
+import com.example.kamilazoldyek.webstack_flights.util.Constant;
 import com.example.kamilazoldyek.webstack_flights.util.LocalData;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class FlightListActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView toolbarTV, isroundtripTV, passTV,
-            departCityTV, arrivCityTV, depAirportNameTV, arrAirportNameTV;
+            departCityTV, arrivCityTV, depAirportNameTV, arrAirportNameTV, errorTV;
 
     private List<Location> locationList;
     private List<FlightList> flightLists;
@@ -44,11 +45,12 @@ public class FlightListActivity extends AppCompatActivity {
     private LocalData localData;
     private Boolean isRoundTrip;
 
-    private OneWayTripRecyclerAdapter oneWayAdapter;
     private TripRecyclerAdapter tripAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private ProgressBar progressBar;
+    private LinearLayout errorLayout;
+    private ImageView travelBack, errorIV;
 
 
     @Override
@@ -83,18 +85,25 @@ public class FlightListActivity extends AppCompatActivity {
         departCityTV = findViewById(R.id.departCityTV);
         arrivCityTV = findViewById(R.id.arrivCityTV);
         progressBar = findViewById(R.id.progressBar2);
+        errorLayout = findViewById(R.id.error_layout);
+        errorTV = findViewById(R.id.error_TV);
+        travelBack = findViewById(R.id.travelerIV);
+        errorIV = findViewById(R.id.errorIV);
+
+        errorLayout.setVisibility(View.GONE);
+        travelBack.setVisibility(View.GONE);
 
 
-        if(isRoundTrip){
+        if (isRoundTrip) {
             isroundtripTV.setText("Ida e volta");
-        }else {
+        } else {
             isroundtripTV.setText("Ida");
         }
         int passengers = Integer.valueOf(localData.getPassengers());
 
-        if(passengers==1){
+        if (passengers == 1) {
             passTV.setText("1 passageiro");
-        }else {
+        } else {
             passTV.setText(localData.getPassengers() + " passageiros");
         }
         departCityTV.setText(localData.getOrigCity());
@@ -114,90 +123,70 @@ public class FlightListActivity extends AppCompatActivity {
                 Integer.valueOf(localData.getPassengers()),
                 localData.getReturnDate());
 
-
         call.enqueue(new Callback<SearchTrip>() {
             @Override
             public void onResponse(Call<SearchTrip> call, Response<SearchTrip> response) {
                 if (!response.isSuccessful()) {
-                    Log.i("Kamis", "deu ruuuuim");
-                    // TODO: 07/05/19 mensagem de erro
+                    progressBar.setVisibility(View.GONE);
+                    errorLayout.setVisibility(View.VISIBLE);
+                    switch (response.code()) {
+                        case 400:
+                            errorTV.setText(Constant.ERR_400_BAD_INPUT);
+                            errorIV.setVisibility(View.GONE);
+                            travelBack.setVisibility(View.VISIBLE);
+                            break;
+                        case 401:
+                            errorTV.setText(Constant.ERR_401_NOT_LOGGED);
+                            break;
+                        case 404:
+                            errorTV.setText(Constant.ERR_404_NOT_FOUND);
+                            break;
+                        case 500:
+                            errorTV.setText(Constant.ERR_500_SERVER_ERROR);
+                            break;
+                        default:
+                            errorTV.setText("");
+                    }
                     return;
                 }
-                SearchTrip searchTrip = response.body();
-                segmentLists = searchTrip.getRequestedFlightSegmentList(); //two segments? one segment?
 
-                List<FlightList> departures = segmentLists.get(0).getFlightList();
-                List<FlightList> returns = segmentLists.get(1).getFlightList();
+                if (!(response.body() == null)) {
+                    SearchTrip searchTrip = response.body();
+                    segmentLists = searchTrip.getRequestedFlightSegmentList(); //two segments = roundtrip  one segment = oneway
 
-                List<FlightList> cat = new ArrayList<>(departures);
-                cat.addAll(returns);
+                    List<FlightList> departures = segmentLists.get(0).getFlightList();
+                    List<FlightList> cat = new ArrayList<>(departures);
 
-                if(!(response.body()==null)){
-                    if(isRoundTrip){
+                    if (isRoundTrip) {
+                        List<FlightList> returns = segmentLists.get(1).getFlightList();
+                        cat.addAll(returns);
                         setUpRoundTripRecyclerAdapter(cat);
                         progressBar.setVisibility(View.GONE);
-                    }else {
-                    setUpRoundTripRecyclerAdapter(departures);
-                    progressBar.setVisibility(View.GONE);
+                    } else {
+                        setUpRoundTripRecyclerAdapter(departures);
+                        progressBar.setVisibility(View.GONE);
                     }
 
-                }else {
-                    // TODO: 07/05/19 mensagem de erro
-                    Log.i("Kamis", "errrroul");
+                } else {
+                    errorLayout.setVisibility(View.VISIBLE);
+                    errorTV.setText("");
                 }
-
-
-
-
-
-                /*for (RequestedFlightSegmentList segmentList : segmentLists) {
-                    flightLists = segmentList.getFlightList();
-                    for (FlightList flight : flightLists) {
-                        String content = "";
-                        content += "Airline: " + flight.getAirline().getName() + "\n";
-                        content += "Arrival: " + flight.getArrival().getDate() + "\n";
-                        content += "Seats: " + flight.getAvailableSeats() + "\n";
-                        content += "Departure Airport: " + flight.getDeparture().getAirport().getName() + "\n";
-                        content += "Cabin: " + flight.getCabin() + "\n\n";
-
-                        for (FareList fare : flight.getFareList()) {
-                            content += "    Fare: " + fare.getType() + "\n";
-                            content += "        Miles: " + fare.getMiles() + "\n";
-                            content += "        Base Miles: " + fare.getBaseMiles() + "\n";
-                            content += "        Money: " + fare.getMoney() + "\n";
-                            content += "        Factor: " + fare.getLoadFactor() + "\n";
-                        }
-
-                        tv.append(content);
-                    }
-                }*/
             }
-
             @Override
             public void onFailure(Call<SearchTrip> call, Throwable t) {
-                Log.i("Test", "Code: " + t.getMessage());
+                errorLayout.setVisibility(View.VISIBLE);
+                errorTV.setText(t.getMessage());
             }
         });
-
-
     }
 
-    public void setUpRoundTripRecyclerAdapter(List<FlightList> list){
+    public void setUpRoundTripRecyclerAdapter(List<FlightList> list) {
         tripAdapter = new TripRecyclerAdapter(list, FlightListActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(tripAdapter);
     }
-
-//    public void setUpOneWayTripRecyclerAdapter(List<RequestedFlightSegmentList> segList){
-//        oneWayAdapter = new OneWayTripRecyclerAdapter(segList, FlightListActivity.this);
-//        recyclerView.setLayoutManager(linearLayoutManager);
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        recyclerView.setNestedScrollingEnabled(false);
-//        recyclerView.setAdapter(oneWayAdapter);
-//
-//    }
 
     @Override
     public void onBackPressed() {

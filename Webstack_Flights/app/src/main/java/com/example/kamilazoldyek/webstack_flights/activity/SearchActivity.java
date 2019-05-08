@@ -1,12 +1,12 @@
 package com.example.kamilazoldyek.webstack_flights.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -49,13 +49,13 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
     private List<RequestedFlightSegmentList> segmentLists;
     private Toolbar toolbar;
     private TextView toolbarTV, departureDateTV, returnDateTV;
-    public AutoCompleteTextView originAutoComplete, destinationAutoComplete;
+    private AutoCompleteTextView originAutoComplete, destinationAutoComplete;
     private LinearLayout returnLayout, layout, departurePickerLayout;
     private CheckBox checkBox;
     private Spinner passengersSpinner;
     private String departureDate, returnDate;
-    public boolean isRoundTrip;
-    public LocalData localData;
+    private boolean isRoundTrip;
+    private LocalData localData;
     private Button searchButton;
 
 
@@ -65,6 +65,16 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         setContentView(R.layout.search_trip_activity);
 
         localData = new LocalData(getApplicationContext());
+        localData.setDepartureDate("*");
+        localData.setDestCity("*");
+        localData.setOrigCity("*");
+        localData.setRoundTrip(false);
+        localData.setReturnDate("");
+        localData.setPassengers("1");
+        localData.setArrivalCode("*");
+        localData.setDepartureCode("*");
+        localData.setIsDeparture(false);
+        localData.setIsReturn(false);
 
         //        use when theres toolBar
         toolbar = findViewById(R.id.toolbar);
@@ -95,11 +105,14 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         returnDateTV = findViewById(R.id.returnDateTV);
         searchButton = findViewById(R.id.button_search);
 
+
         layout.requestFocus();
         searchButton.setVisibility(View.GONE);
 
+
         //        checkbox
         checkBox.setChecked(false);
+        localData.setReturnDate("");
         isRoundTrip = false;
         returnLayout.setVisibility(View.GONE);
         onCheckboxClicked(checkBox);
@@ -119,17 +132,19 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
             @Override
             public void onClick(View view) {
                 isRoundTrip = false;
-                openDialog();
+                openDateDialog();
             }
         });
         returnLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 isRoundTrip = true;
-                openDialog();
+                openDateDialog();
             }
         });
 
+
+//      do the magic
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,25 +178,15 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
             @Override
             public void onResponse(Call<List<Location>> call, Response<List<Location>> response) {
                 if (!response.isSuccessful()) {
-                    Log.i("TestKamis", "Code: " + response.code());
-                    return;
+                   openDialog(R.layout.error_dialog, true);
+
                 }
-                Log.i("TestKamis", "Code: " + response.code());
+
                 locationList = response.body();
                 if(!locationList.isEmpty()){
                     AutoCompleteLocationAdapter adapterLoc = new AutoCompleteLocationAdapter(SearchActivity.this, locationList);
                     originAutoComplete.setAdapter(adapterLoc);
                     destinationAutoComplete.setAdapter(adapterLoc);
-//
-//                    String or = originAutoComplete.getText().toString();
-//                    localData.setDepartureCode(or);
-//                    Log.i("kamis", or);
-//
-//                    String dp = originAutoComplete.getText().toString();
-//                    localData.setDepartureCode(dp);
-//                    Log.i("kamis", dp);
-
-
 
                     originAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
@@ -200,15 +205,15 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                             localData.setDestCity(current.getCity());
                         }
                     });
+                }else {
+                    openDialog(R.layout.error_dialog, true);
 
-
-
-                    // TODO: 06/05/19 pick the code from the edittext
                 }
             }
             @Override
             public void onFailure(Call<List<Location>> call, Throwable t) {
-                Log.i("Test", "Code: " + t.getMessage());
+                openDialog(R.layout.error_dialog, true);
+
             }
         });
     }
@@ -223,12 +228,13 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         } else {
             isRoundTrip = false;
             localData.setRoundTrip(false);
+            localData.setReturnDate("");
             returnLayout.setAnimation(AnimationUtils.loadAnimation(SearchActivity.this, R.anim.upward_anim));
             returnLayout.setVisibility(View.GONE);
         }
     }
 
-    public void openDialog(){
+    public void openDateDialog(){
         DatePickerFragment datepickDialog = new DatePickerFragment();
         datepickDialog.show(getSupportFragmentManager(), "Picker");
     }
@@ -243,13 +249,13 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
 
 
         if(isRoundTrip){
-            returnDate = y + "-" + (m+1) + "-" + d;
+            returnDate = y + "-" + (m+1) + "-" + (d+1);
             date = CustomDateFormat.CustomDateFormatA(returnDate);
             returnDateTV.setText(date);
             localData.setReturnDate(returnDate);
 
         }else {
-            departureDate = y + "-" + (m+1) + "-" + d;
+            departureDate = y + "-" + (m+1) + "-" + (d+1);
             date = CustomDateFormat.CustomDateFormatA(departureDate);
             departureDateTV.setText(date);
             localData.setDepartureDate(departureDate);
@@ -274,4 +280,26 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
         super.onResume();
         // TODO: 06/05/19 reseta tudo aqui
     }
+
+
+    public void openDialog(int layout, final boolean fatalError){ //recebe o int do layout, r.layout.nome_do_layout
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(SearchActivity.this);
+        View mView = getLayoutInflater().inflate(layout, null);
+
+        mBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                if(fatalError)
+                    finish();
+            }
+        });
+        mBuilder.setView(mView)
+                .create()
+                .show();
+
+    }
+
+
 }

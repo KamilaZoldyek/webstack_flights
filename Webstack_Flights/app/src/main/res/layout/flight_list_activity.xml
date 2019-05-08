@@ -146,6 +146,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <LinearLayout
+                android:id="@+id/error_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/errorIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:tint="@color/lightGray200"
+                    app:srcCompat="@drawable/ic_error" />
+
+                <ImageView
+                    android:id="@+id/travelerIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:tint="@color/lightGray200"
+                    app:srcCompat="@drawable/ic_travel_back" />
+
+                <TextView
+                    style="@style/bodyText.big"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="@dimen/padding"
+                    android:text="Algo deu errado!"
+                    android:textColor="@color/lightGray200" />
+
+                <TextView
+                    android:id="@+id/error_TV"
+                    style="@style/bodyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="@dimen/padding"
+                    android:text="Erro XXX"
+                    android:textColor="@color/lightGray200" />
+            </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"

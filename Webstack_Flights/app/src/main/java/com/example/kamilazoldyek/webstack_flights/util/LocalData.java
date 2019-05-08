@@ -61,7 +61,7 @@ public class LocalData {
         editor.commit();
     }
 
-    public String getPassengers() {return sharedPreferences.getString(passengers, "*");}
+    public String getPassengers() {return sharedPreferences.getString(passengers, "1");}
     public void setPassengers(String p) {
         editor.putString(passengers, p);
         editor.commit();
