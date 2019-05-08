@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.kamilazoldyek.webstack_flights.R;
@@ -110,7 +111,11 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
         String arrTime = CustomDateFormat.CustomDateFormatTime(flights.getArrival().getDate());
 
         String miles = NumberFormat.getNumberInstance(Locale.getDefault()).format(fareLists.get(0).getMiles());
-        v.milesTV.setText(miles+" Milhas");
+        v.milesRadio.setText(miles + " Milhas");
+
+        String milesMoney = NumberFormat.getNumberInstance(Locale.getDefault()).format(fareLists.get(2).getMiles());
+        String money = NumberFormat.getCurrencyInstance(Locale.getDefault()).format(fareLists.get(2).getMoney());
+        v.milesMoneyRadio.setText(milesMoney + " Milhas + "+ money);
 
         v.flightNumberTV.setText("Voo número " + legList.get(0).getFlightNumber().toString());
 
@@ -185,6 +190,7 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
 
         public ImageView detailIV, departureIV, returnIV;
         public LinearLayout detailLayout, valueLayout, buyFlightLayout;
+        public RadioButton milesRadio, milesMoneyRadio;
 
         public ViewHolder(@NonNull View v) {
             super(v);
@@ -199,7 +205,6 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
             stopsTV = v.findViewById(R.id.stopsTV);
             seatsTV = v.findViewById(R.id.seatsTV);
             flightNumberTV = v.findViewById(R.id.flightNumberTV);
-            milesTV = v.findViewById(R.id.milesTV);
             isDeparture = v.findViewById(R.id.isDeparture);
             departureIV = v.findViewById(R.id.departureIV);
             returnIV = v.findViewById(R.id.returnIV);
@@ -212,6 +217,8 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
             detailLayout = v.findViewById(R.id.detailLayout);
             detailIV = v.findViewById(R.id.detailIV);
             detailTV = v.findViewById(R.id.detailTV);
+            milesRadio = v.findViewById(R.id.miles);
+            milesMoneyRadio = v.findViewById(R.id.miles_money);
 
 
 

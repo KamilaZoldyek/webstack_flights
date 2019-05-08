@@ -23,7 +23,6 @@ public class AutoCompleteLocationAdapter extends ArrayAdapter<Location> {
     public AutoCompleteLocationAdapter(Context context, List<Location> locationList) {
         super(context, 0, locationList);
         locationListCOPY = new ArrayList<>(locationList);
-        Log.i("Test", "hello autocomplete");
     }
 
     public Filter getFilter() {

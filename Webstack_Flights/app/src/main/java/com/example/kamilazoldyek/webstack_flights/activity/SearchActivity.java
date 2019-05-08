@@ -163,14 +163,20 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
 
                 if (isSomethingEmpty()) {
                     openDialog(R.layout.error_no_date_dialog, "common");
-                } else if (localData.getRoundTrip()) {
-                    if (localData.getReturnDate().equals("")) {
-                        openDialog(R.layout.error_no_date_dialog, "common");
-                    } else {
-                        Intent intent = new Intent(SearchActivity.this, FlightListActivity.class);
-                        startActivity(intent);
-                    }
-                }
+                    } else
+                        if (localData.getRoundTrip()) {
+                            if (localData.getReturnDate().equals("")) {
+                                openDialog(R.layout.error_no_date_dialog, "common");
+                                Log.i(Constant.TEST, "onclick");
+                            }
+                            else {
+                                    Intent intent = new Intent(SearchActivity.this, FlightListActivity.class);
+                                    startActivity(intent);
+                                    }
+                        }else {
+                            Intent intent = new Intent(SearchActivity.this, FlightListActivity.class);
+                            startActivity(intent);
+                        }
             }
         });
 
