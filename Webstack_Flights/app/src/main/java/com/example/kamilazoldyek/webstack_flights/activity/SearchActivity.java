@@ -1,12 +1,17 @@
 package com.example.kamilazoldyek.webstack_flights.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -131,6 +136,22 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
                 localData.setPassengers(passengersSpinner.getSelectedItem().toString());
                 Intent intent = new Intent(SearchActivity.this, FlightListActivity.class);
                 startActivity(intent);
+            }
+        });
+
+//        Listener for when done typing an destination airport
+        destinationAutoComplete.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                View v = destinationAutoComplete;
+                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                if(actionId == EditorInfo.IME_ACTION_DONE){
+                    destinationAutoComplete.setSelection(0);
+                    destinationAutoComplete.clearFocus();
+                    layout.requestFocus();
+                    inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+                return false;
             }
         });
     }

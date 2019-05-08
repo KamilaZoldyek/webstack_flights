@@ -15,22 +15,21 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/royalBlue"
             android:orientation="horizontal"
-            android:padding="@dimen/padding">
+            android:weightSum="5">
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="5dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0"
                 app:srcCompat="@drawable/rectangle" />
 
             <TextView
                 android:id="@+id/locationCode"
                 style="@style/bodyText.big"
                 android:layout_width="70dp"
-                android:layout_height="@dimen/editTextHeight"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:padding="@dimen/padding"
                 android:text="MMM" />
 
@@ -38,7 +37,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -48,7 +47,6 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:paddingStart="@dimen/padding"
                     android:text="Airport Name" />
 
                 <LinearLayout
@@ -61,27 +59,24 @@
                         style="@style/captionText.gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="4dp"
-                        android:paddingStart="@dimen/padding"
+                        android:padding="0dp"
                         android:text="City" />
 
                     <TextView
                         style="@style/captionText.gray"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="4dp"
-                        android:paddingStart="@dimen/padding"
-                        android:text=" • " />
+                        android:padding="0dp"
+                        android:text="  •  " />
 
                     <TextView
                         android:id="@+id/locationCountry"
                         style="@style/captionText.gray"
-                        android:ellipsize="end"
-                        android:lines="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="4dp"
-                        android:paddingStart="@dimen/padding"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:padding="0dp"
                         android:text="Country" />
                 </LinearLayout>
 

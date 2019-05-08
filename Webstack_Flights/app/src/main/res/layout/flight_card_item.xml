@@ -129,6 +129,32 @@
                     android:textSize="@dimen/textSizeHuge" />
 
                 <TextView
+                    android:id="@+id/departureAirportCity"
+                    style="@style/captionText.gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="City" />
+
+                <TextView
+                    android:id="@+id/departureLocalDate"
+                    style="@style/captionText.gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="DepartureLocalDate" />
+
+                <TextView
                     android:id="@+id/departureAirportCode"
                     style="@style/bodyText"
                     android:layout_width="wrap_content"
@@ -139,7 +165,7 @@
                     android:gravity="center"
                     android:lines="1"
                     android:padding="4dp"
-                    android:text="Airport Name that cam be very very very very long" />
+                    android:text="code " />
 
                 <TextView
                     android:id="@+id/departureAirportName"
@@ -154,32 +180,6 @@
                     android:padding="4dp"
                     android:text="Airport Name that cam be very very very very long" />
 
-                <TextView
-                    android:id="@+id/departureLocalDate"
-                    style="@style/captionText.gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:padding="4dp"
-                    android:text="Airport Name that cam be very very very very long" />
-
-
-                <TextView
-                    android:id="@+id/departureAirportCity"
-                    style="@style/captionText.gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:padding="4dp"
-                    android:text="Airport Name that cam be very very very very long" />
 
             </LinearLayout>
 
@@ -238,6 +238,32 @@
                     android:textSize="@dimen/textSizeHuge" />
 
                 <TextView
+                    android:id="@+id/arrivalAirportCity"
+                    style="@style/captionText.gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="City" />
+
+                <TextView
+                    android:id="@+id/arrivalLocalDate"
+                    style="@style/captionText.gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:padding="4dp"
+                    android:text="Arrival Local Date" />
+
+                <TextView
                     android:id="@+id/arrivalAirportCode"
                     style="@style/bodyText"
                     android:layout_width="wrap_content"
@@ -248,7 +274,7 @@
                     android:gravity="center"
                     android:lines="1"
                     android:padding="4dp"
-                    android:text="Airport Name that cam be very very very very long" />
+                    android:text="code " />
 
                 <TextView
                     android:id="@+id/arrivalAirportName"
@@ -263,32 +289,7 @@
                     android:padding="4dp"
                     android:text="Airport Name that cam be very very very very long" />
 
-                <TextView
-                    android:id="@+id/arrivalLocalDate"
-                    style="@style/captionText.gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:padding="4dp"
-                    android:text="Airport Name that cam be very very very very long" />
 
-
-                <TextView
-                    android:id="@+id/arrivalAirportCity"
-                    style="@style/captionText.gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:lines="1"
-                    android:padding="4dp"
-                    android:text="Airport Name that cam be very very very very long" />
             </LinearLayout>
         </LinearLayout>
 

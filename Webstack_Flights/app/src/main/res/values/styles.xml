@@ -19,7 +19,6 @@
 
     <style name="spinnerStyle" parent="ThemeOverlay.AppCompat">
         <item name="android:backgroundTint">@color/royalBlue</item>
-
     </style>
 
     <style name="ToolbarTextAppearance">
