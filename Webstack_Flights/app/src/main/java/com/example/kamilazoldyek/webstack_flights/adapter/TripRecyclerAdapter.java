@@ -21,9 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import io.swagger.client.ApiClient;
+import io.swagger.client.api.DefaultApi;
+import io.swagger.client.model.ResultTaxes;
 import io.swagger.client.model.search.FareList;
 import io.swagger.client.model.search.FlightList;
 import io.swagger.client.model.search.LegList;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapter.ViewHolder> {
 
@@ -54,6 +60,11 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
 
         // stuff to bind
         final FlightList flights = flightList.get(position);
+
+        ApiClient apiClient = new ApiClient();
+        apiClient.createDefaultAdapter();
+        DefaultApi api = apiClient.createService();
+
 
         v.detailLayout.setVisibility(View.GONE);
         v.arrivalAirportCode.setVisibility(View.GONE);
@@ -110,6 +121,32 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
         String arrDate = CustomDateFormat.CustomDateFormatDate(flights.getArrival().getDate());
         String depTime = CustomDateFormat.CustomDateFormatTime(flights.getDeparture().getDate());
         String arrTime = CustomDateFormat.CustomDateFormatTime(flights.getArrival().getDate());
+
+        String uid_flight = flights.getUid();
+        String fare_uid = fareLists.get(1).getUid();
+        int passengers = Integer.valueOf(localData.getPassengers());
+
+        Call<ResultTaxes> call = api.taxesGet(uid_flight, fare_uid, passengers, "", "");
+        call.enqueue(new Callback<ResultTaxes>() {
+            @Override
+            public void onResponse(Call<ResultTaxes> call, Response<ResultTaxes> response) {
+                if (!response.isSuccessful()) {
+                    v.taxes.setText("Erro");
+                }else {
+                    float taxes = response.body().getTaxes().getMoney();
+                    String taxesFormatted = NumberFormat.getCurrencyInstance(Locale.getDefault()).format(taxes);
+                    v.taxes.setText("Taxa de " + taxesFormatted);
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResultTaxes> call, Throwable t) {
+
+            }
+        });
+
 
         String miles = NumberFormat.getNumberInstance(Locale.getDefault()).format(fareLists.get(0).getMiles());
         v.milesRadio.setText(miles + " Milhas");
@@ -181,7 +218,7 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
                 departureAirportNmeTV, durationTimeTV, isDeparture,
                 arrivalTimeTV, arrivalAirportNameTV, cabinTypeTV,
                 stopsTV, seatsTV, flightNumberTV, departureAirportCode,
-                departureAirportCity,arrivalAirportCode, detailTV,
+                departureAirportCity,arrivalAirportCode, detailTV, taxes,
                 departureLocaldate, arrivalLocalDate, arrivalAirportCity;
 
         public ImageView detailIV, departureIV, returnIV;
@@ -215,6 +252,7 @@ public class TripRecyclerAdapter extends RecyclerView.Adapter<TripRecyclerAdapte
             detailTV = v.findViewById(R.id.detailTV);
             milesRadio = v.findViewById(R.id.miles);
             milesMoneyRadio = v.findViewById(R.id.miles_money);
+            taxes = v.findViewById(R.id.taxes);
 
         }
     }

@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -63,6 +64,8 @@ public class FlightListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbarTV.setText("Voos");
+
+
 
         segmentLists = new ArrayList<>();
 
@@ -145,12 +148,19 @@ public class FlightListActivity extends AppCompatActivity {
 
                     List<FlightList> departures = segmentLists.get(0).getFlightList();
                     List<FlightList> cat = new ArrayList<>(departures);
+                    Log.i(Constant.TEST,String.valueOf(cat.size()));
 
-                    if (isRoundTrip) {
+
+                    if (localData.getRoundTrip()) {
                         List<FlightList> returns = segmentLists.get(1).getFlightList();
+                        Log.i(Constant.TEST,"B" + String.valueOf(returns.size()));
                         cat.addAll(returns);
+
                         setUpRoundTripRecyclerAdapter(cat);
                         progressBar.setVisibility(View.GONE);
+
+
+
                     } else {
                         setUpRoundTripRecyclerAdapter(departures);
                         progressBar.setVisibility(View.GONE);

@@ -1,6 +1,7 @@
 package io.swagger.client.api;
 
 import io.swagger.client.model.Location;
+import io.swagger.client.model.ResultTaxes;
 import io.swagger.client.model.search.SearchTrip;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -94,7 +95,7 @@ public interface DefaultApi {
    */
   @Headers({"Content-Type:application/json"})
   @GET("taxes")
-  Call<Void> taxesGet(
+  Call<ResultTaxes> taxesGet(
     @Query("flight1") String flight1,
     @Query("fare1") String fare1,
     @Query("passengers") Integer passengers,
